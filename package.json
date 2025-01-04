@@ -5,12 +5,10 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "clean": "cmake-js clean",
+    "clean": "npx node-gyp clean",
     "patch": "node ./patch-packagename.js",
-    "build:debug": "cmake-js rebuild --CDCMAKE_OSX_ARCHITECTURES=\"arm64;x86_64\" --debug",
-    "build:release": "cmake-js rebuild --CDCMAKE_OSX_ARCHITECTURES=\"arm64;x86_64\"",
-    "prepublishOnly": "npm run build:release",
-    "publish:next": "npm publish --tag next"
+    "build": "npx node-gyp clean && npx node-gyp rebuild --CDCMAKE_OSX_ARCHITECTURES=\"arm64\" --release",
+    "npm:prepare": "npm run build && node ./.build/prepare.js"
   },
   "homepage": "https://nutjs.dev",
   "author": {
@@ -42,7 +40,7 @@
     "node-addon-api": "7.1.0"
   },
   "optionalDependencies": {
-    "@nut-tree/node-mac-permissions": "2.2.1"
+    "@nut-tree-fork/node-mac-permissions": "2.2.1"
   },
   "engines": {
     "node": ">=10.15.3"

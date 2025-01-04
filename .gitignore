@@ -6,3 +6,5 @@ prebuilds/
 .cache
 cmake-build-debug
 .DS_Store
+dist
+test/integration/node_modules
